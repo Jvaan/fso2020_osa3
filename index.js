@@ -1,6 +1,13 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
+
+morgan.token('body', function(req) {
+    return JSON.stringify(req.body)
+})
+
 app.use(express.json())
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 const minId = 0
 const maxId = 100000
@@ -67,7 +74,6 @@ const generateId = () => {
 }
 
 app.post('/api/persons', (request, response) => {
-    console.log(request.body)
     const body = request.body
 
     if (!body.name || !body.number) {
