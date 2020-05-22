@@ -1,0 +1,7 @@
+POST https://floating-basin-56424.herokuapp.com/api/persons
+Content-Type: application/json
+
+{
+        "name": "Testing testing",
+        "number": "1234567890"
+}
