@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+mongoose.set('useFindAndModify', false)
+
 const url = process.env.MONGODB_PHONEBOOK_URL
 // `mongodb+srv://fullstack_test1:${password}@cluster0-qngkz.mongodb.net/phonebook-app?retryWrites=true&w=majority`
 
