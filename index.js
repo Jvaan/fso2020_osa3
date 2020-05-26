@@ -62,15 +62,6 @@ app.post('/api/persons', (request, response, next) => {
         })
     }
 
-    /*
-    const existingPerson = persons.find(person => person.name.toLowerCase() === body.name.toLowerCase())
-    if (existingPerson) {
-        return response.status(400).json({
-            error: 'name must be unique.'
-        })
-    }
-    */
-
     const person = new Person({
         name: body.name,
         number: body.number
@@ -108,6 +99,8 @@ const errorHandler = (error, request, response, next) => {
 
     if (error.name === 'CastError' && error.kind == 'ObjectId') {
         return response.status(400).send({ error: 'malformatted id' })
+    } else if (error.name === 'ValidationError') {
+        return response.status(400).json({ error: error.message })
     }
 
     next(error)
