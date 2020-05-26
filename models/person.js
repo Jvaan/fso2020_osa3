@@ -5,7 +5,8 @@ mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 
 const url = process.env.MONGODB_PHONEBOOK_URL
-// `mongodb+srv://fullstack_test1:${password}@cluster0-qngkz.mongodb.net/phonebook-app?retryWrites=true&w=majority`
+// For Heroku, set from cmd line:
+// heroku config:set MONGODB_PHONEBOOK_URL='mongodb+srv://fullstack_test1:PASSWORD_HERE@cluster0-qngkz.mongodb.net/phonebook-app?retryWrites=true'
 
 console.log('connecting to', url)
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
