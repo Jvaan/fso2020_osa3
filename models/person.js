@@ -11,7 +11,7 @@ const url = process.env.MONGODB_PHONEBOOK_URL
 console.log('connecting to', url)
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => {
-    console.log('connected to MongoDB')
+    console.log('connected to MongoDB, connection type: ', result.connection)
   })
   .catch((error) => {
     console.log('error connecting to MongoDB:', error.message)
@@ -19,16 +19,16 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const personSchema = new mongoose.Schema({
   name: {
-      type: String,
-      minlength: 3,
-      unique: true,
-      required: true
+    type: String,
+    minlength: 3,
+    unique: true,
+    required: true
   },
   number: {
     type: String,
     minlength: 8,
     required: true
-    }
+  }
 })
 
 personSchema.plugin(uniqueValidator)
